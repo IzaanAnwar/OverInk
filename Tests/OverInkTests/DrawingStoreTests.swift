@@ -1,7 +1,7 @@
 import CoreGraphics
 import Testing
 
-@testable import GlassPen
+@testable import OverInk
 
 @MainActor
 struct DrawingStoreTests {

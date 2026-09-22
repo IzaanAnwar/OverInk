@@ -16,7 +16,7 @@ jobs:
     runs-on: macos-26
     timeout-minutes: 35
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: Validate release version
@@ -28,7 +28,7 @@ jobs:
       - name: Select Xcode
         run: sudo xcode-select -s /Applications/Xcode_26.6.app/Contents/Developer
       - name: Test
-        run: ./scripts/test.sh
+        run: make test
       - name: Configure optional Developer ID signing
         env:
           CERTIFICATE_BASE64: ${{ secrets.MACOS_CERTIFICATE_BASE64 }}
@@ -40,9 +40,9 @@ jobs:
         run: ./scripts/configure-signing.sh
       - name: Build universal app and DMG
         run: |
-          ARCHS='arm64 x86_64' ./scripts/build-app.sh
-          ./scripts/package-dmg.sh
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+          make universal
+          make package
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: release-dmg
           path: dist/*.dmg*
@@ -50,8 +50,8 @@ jobs:
       - name: Remove temporary signing keychain
         if: always()
         run: |
-          if [[ -f "$RUNNER_TEMP/glasspen-signing.keychain-db" ]]; then
-            security delete-keychain "$RUNNER_TEMP/glasspen-signing.keychain-db"
+          if [[ -f "$RUNNER_TEMP/overink-signing.keychain-db" ]]; then
+            security delete-keychain "$RUNNER_TEMP/overink-signing.keychain-db"
           fi
 
   publish:
@@ -60,7 +60,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+      - uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
           name: release-dmg
           path: dist
@@ -76,5 +76,5 @@ jobs:
           else
             printf 'Universal macOS app for macOS 26+. Community build: ad-hoc signed, not Apple-notarized. macOS may block opening a downloaded build.\n' > notes.md
           fi
-          printf '\nDownload the DMG, drag GlassPen to Applications, and press Control-Option-D to draw. SHA-256 checksums are attached.\n' >> notes.md
-          gh release create "$RELEASE_TAG" dist/* --verify-tag --title "GlassPen $RELEASE_TAG" --notes-file notes.md --generate-notes
+          printf '\nDownload the DMG, drag OverInk to Applications, and press Control-Option-D to draw. SHA-256 checksums are attached.\n' >> notes.md
+          gh release create "$RELEASE_TAG" dist/* --verify-tag --title "OverInk $RELEASE_TAG" --notes-file notes.md --generate-notes

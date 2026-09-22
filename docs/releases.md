@@ -1,9 +1,9 @@
 # Release process
 
 1. Update `VERSION` using `major.minor.patch` and add the release notes to `CHANGELOG.md`.
-2. Run `./scripts/test.sh`, `./scripts/build-app.sh`, and `./scripts/package-dmg.sh`.
+2. Run `make release`.
 3. Merge to `main` after CI passes.
-4. Create and push an annotated tag matching `VERSION`, for example `git tag -a v0.1.0 -m 'GlassPen 0.1.0'` and `git push origin v0.1.0`.
+4. Create and push an annotated tag matching `VERSION`, for example `git tag -a v0.1.1 -m 'OverInk 0.1.1'` and `git push origin v0.1.1`.
 5. The Release workflow creates a universal DMG, verifies it, generates a SHA-256 checksum, and publishes both files to GitHub Releases.
 
 Tags are immutable release identifiers. Publish a new version to fix a bad release. Do not replace assets attached to an existing tag.

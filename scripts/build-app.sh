@@ -8,7 +8,7 @@ if [[ ! "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
     exit 1
 fi
 
-APP="$PROJECT_ROOT/dist/GlassPen.app"
+APP="$PROJECT_ROOT/dist/OverInk.app"
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
 
@@ -20,13 +20,13 @@ for architecture in ${ARCHS:-$(uname -m)}; do
     fi
     swift build "${SWIFT_ARGS[@]}" -c release --arch "$architecture"
     binary_dir="$(swift build "${SWIFT_ARGS[@]}" -c release --arch "$architecture" --show-bin-path)"
-    BINARIES+=("$binary_dir/GlassPen")
+    BINARIES+=("$binary_dir/OverInk")
 done
 
 if [[ ${#BINARIES[@]} -gt 1 ]]; then
-    lipo -create "${BINARIES[@]}" -output "$APP/Contents/MacOS/GlassPen"
+    lipo -create "${BINARIES[@]}" -output "$APP/Contents/MacOS/OverInk"
 else
-    cp "${BINARIES[0]}" "$APP/Contents/MacOS/GlassPen"
+    cp "${BINARIES[0]}" "$APP/Contents/MacOS/OverInk"
 fi
 
 cp Resources/Info.plist "$APP/Contents/Info.plist"
@@ -34,7 +34,7 @@ cp Resources/Info.plist "$APP/Contents/Info.plist"
 /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $VERSION" "$APP/Contents/Info.plist"
 
 ./scripts/build-icon.sh
-cp .build/GlassPen.icns "$APP/Contents/Resources/GlassPen.icns"
+cp .build/OverInk.icns "$APP/Contents/Resources/OverInk.icns"
 
 SIGNING_IDENTITY="${SIGNING_IDENTITY:--}"
 if [[ "$SIGNING_IDENTITY" == '-' ]]; then

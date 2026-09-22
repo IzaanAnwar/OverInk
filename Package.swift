@@ -2,13 +2,13 @@
 import PackageDescription
 
 let package = Package(
-  name: "GlassPen",
+  name: "OverInk",
   platforms: [.macOS(.v26)],
   products: [
-    .executable(name: "GlassPen", targets: ["GlassPen"])
+    .executable(name: "OverInk", targets: ["OverInk"])
   ],
   targets: [
-    .executableTarget(name: "GlassPen"),
-    .testTarget(name: "GlassPenTests", dependencies: ["GlassPen"]),
+    .executableTarget(name: "OverInk"),
+    .testTarget(name: "OverInkTests", dependencies: ["OverInk"]),
   ]
 )

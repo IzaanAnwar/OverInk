@@ -34,7 +34,7 @@ struct ControlPanelView: View {
         .font(.system(size: 22, weight: .regular))
         .symbolRenderingMode(.hierarchical)
       VStack(alignment: .leading, spacing: 1) {
-        Text("GlassPen").font(.system(size: 14, weight: .semibold))
+        Text("OverInk").font(.system(size: 14, weight: .semibold))
         Text("Draw over any app").font(.caption).foregroundStyle(.secondary)
       }
       Spacer()

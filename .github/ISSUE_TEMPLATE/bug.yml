@@ -5,8 +5,8 @@ body:
   - type: input
     id: version
     attributes:
-      label: GlassPen and macOS versions
-      placeholder: GlassPen 0.1.0, macOS 26.0
+      label: OverInk and macOS versions
+      placeholder: OverInk 0.1.0, macOS 26.0
     validations:
       required: true
   - type: textarea

@@ -1,13 +1,13 @@
-# GlassPen
+# OverInk
 
-GlassPen is a focused macOS menu-bar app for drawing over any application with a mouse or trackpad. It stays out of the way until drawing is active, then presents a compact native Liquid Glass tool strip.
+**Ink over anything.** OverInk is a focused macOS menu-bar app for drawing over any application with a mouse or trackpad. It stays out of the way until drawing is active, then presents a compact native Liquid Glass tool strip.
 
-[Download the latest release](https://github.com/IzaanAnwar/GlassPen/releases/latest) · [View all versions](https://github.com/IzaanAnwar/GlassPen/releases) · [MIT license](LICENSE)
+[Download the latest release](https://github.com/IzaanAnwar/OverInk/releases/latest) · [View all versions](https://github.com/IzaanAnwar/OverInk/releases) · [MIT license](LICENSE)
 
-## Use GlassPen
+## Use OverInk
 
-1. Open GlassPen. It appears in the menu bar without adding a Dock icon.
-2. Click the GlassPen icon in the menu bar, or press `Control-Option-D`.
+1. Open OverInk. It appears in the menu bar without adding a Dock icon.
+2. Click the OverInk icon in the menu bar, or press `Control-Option-D`.
 3. Draw anywhere on screen.
 4. Use the floating strip to switch tools, change color, undo, clear, or stop drawing.
 
@@ -25,30 +25,30 @@ Press `Escape`, right-click, or press `Control-Option-D` again to stop drawing. 
 
 Pen and Highlighter are always freehand and follow the pointer without snapping. Line, Arrow, Rectangle, and Oval are the only tools that regularize the gesture into geometry.
 
-GlassPen supports multiple displays and full-screen Spaces. It requires macOS 26 or newer and does not require Screen Recording or Accessibility permission. It does not use analytics, accounts, or network access.
+OverInk supports multiple displays and full-screen Spaces. It requires macOS 26 or newer and does not require Screen Recording or Accessibility permission. It does not use analytics, accounts, or network access.
 
 ## Build locally
 
 Build, install to the local `dist` directory, and launch:
 
 ```sh
-./script/build_and_run.sh
+make run
 ```
 
 Run the full test suite:
 
 ```sh
-./scripts/test.sh
+make test
 ```
 
 Create a signed app bundle and DMG using an ad-hoc signature:
 
 ```sh
-./scripts/build-app.sh
-./scripts/package-dmg.sh
+make app
+make package
 ```
 
-Set `ARCHS='arm64 x86_64'` when building a universal release. Developer ID signing and notarization are optional and documented in [the release guide](docs/releases.md).
+Use `make universal` for an Intel and Apple Silicon app, or `make release` to run the complete local pipeline. Developer ID signing and notarization are optional and documented in [the release guide](docs/releases.md).
 
 ## Contributing
 

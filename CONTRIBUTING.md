@@ -5,8 +5,9 @@ Open an issue before starting a large change. Small fixes can go directly to a f
 Use Swift 6.2 or newer, macOS 26 or newer, and the macOS 26 SDK. Run these checks before submitting:
 
 ```sh
-./scripts/test.sh
-./scripts/build-app.sh
+make validate
+make test
+make app
 ```
 
 For UI changes, include screenshots that contain no private desktop content. Check light and dark appearance, Reduce Motion, multiple displays, full-screen apps, and `Shift-Command-3`, `Shift-Command-4`, and `Shift-Command-5` while drawing is active.

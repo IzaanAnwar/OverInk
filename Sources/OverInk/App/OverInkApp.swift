@@ -35,7 +35,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     item.button?.target = self
     item.button?.action = #selector(togglePopover)
-    item.button?.toolTip = "GlassPen"
+    item.button?.toolTip = "OverInk"
     statusItem = item
     updateStatusItem(isDrawingEnabled: false)
   }
@@ -83,11 +83,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
   private func updateStatusItem(isDrawingEnabled: Bool) {
     let symbolName = isDrawingEnabled ? "pencil.tip.crop.circle.fill" : "pencil.tip.crop.circle"
-    let symbol = NSImage(systemSymbolName: symbolName, accessibilityDescription: "GlassPen")
+    let symbol = NSImage(systemSymbolName: symbolName, accessibilityDescription: "OverInk")
     symbol?.isTemplate = true
     statusItem?.button?.image = symbol
     statusItem?.button?.contentTintColor = isDrawingEnabled ? .systemRed : nil
-    statusItem?.button?.toolTip = isDrawingEnabled ? "GlassPen is drawing" : "GlassPen"
+    statusItem?.button?.toolTip = isDrawingEnabled ? "OverInk is drawing" : "OverInk"
   }
 
   @objc private func togglePopover() {
@@ -106,7 +106,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 }
 
 @main
-struct GlassPenApp: App {
+struct OverInkApp: App {
   @NSApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
 
   var body: some Scene {
