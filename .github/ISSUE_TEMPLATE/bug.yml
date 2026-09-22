@@ -1,0 +1,23 @@
+name: Bug report
+description: Report a reproducible problem
+title: 'Bug: '
+body:
+  - type: input
+    id: version
+    attributes:
+      label: GlassPen and macOS versions
+      placeholder: GlassPen 0.1.0, macOS 26.0
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps, expected behavior, and actual behavior
+      description: Remove private information from screenshots and recordings before attaching them.
+    validations:
+      required: true
+  - type: textarea
+    id: displays
+    attributes:
+      label: Display setup
+      description: Include the number of displays, scaling, and whether a full-screen app or multiple Spaces were involved.
