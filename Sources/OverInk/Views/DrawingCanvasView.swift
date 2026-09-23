@@ -61,8 +61,8 @@ final class DrawingCanvasView: NSView {
     let point = convert(event.locationInWindow, from: nil)
     if activeTool == .eraser {
       store.erase(at: point, on: displayID, tolerance: eraserTolerance)
-    } else if currentStroke?.tool.isFreehand == true, shouldAppend(point) {
-      currentStroke?.points.append(point)
+    } else if currentStroke?.tool.isFreehand == true {
+      if shouldAppend(point) { currentStroke?.points.append(point) }
     } else if let firstPoint = currentStroke?.points.first {
       currentStroke?.points = [firstPoint, point]
     }
